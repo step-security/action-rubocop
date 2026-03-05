@@ -1,0 +1,422 @@
+{
+  "source": {
+    "name": "rubocop",
+    "url": "https://rubocop.org/"
+  },
+  "diagnostics": [
+    {
+      "message": "Missing frozen string literal comment.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Style/FrozenStringLiteralComment"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "line": 1,
+              "column": 1
+            }
+          },
+          "text": "# frozen_string_literal: true\n"
+        }
+      ]
+    },
+    {
+      "message": "Use def with parentheses when there are parameters.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 16
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Style/MethodDefParentheses"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:1:9: C: Style/MethodDefParentheses: Use def with parentheses when there are parameters.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 16
+            }
+          },
+          "text": "(xyz,abc)"
+        }
+      ]
+    },
+    {
+      "message": "Space missing after comma.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Layout/SpaceAfterComma"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:1:12: C: Layout/SpaceAfterComma: Space missing after comma.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 1,
+              "column": 12
+            },
+            "end": {
+              "line": 1,
+              "column": 13
+            }
+          },
+          "text": ", "
+        }
+      ]
+    },
+    {
+      "message": "Unnecessary spacing detected.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 2,
+            "column": 4
+          },
+          "end": {
+            "line": 2,
+            "column": 7
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Layout/ExtraSpacing"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:2:4: C: Layout/ExtraSpacing: Unnecessary spacing detected.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 2,
+              "column": 4
+            },
+            "end": {
+              "line": 2,
+              "column": 7
+            }
+          },
+          "text": ""
+        }
+      ]
+    },
+    {
+      "message": "Surrounding space missing for operator `+`.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 2,
+            "column": 13
+          },
+          "end": {
+            "line": 2,
+            "column": 14
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Layout/SpaceAroundOperators"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:2:13: C: Layout/SpaceAroundOperators: Surrounding space missing for operator `+`.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 2,
+              "column": 13
+            },
+            "end": {
+              "line": 2,
+              "column": 17
+            }
+          },
+          "text": " + "
+        }
+      ]
+    },
+    {
+      "message": "Unnecessary spacing detected.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 2,
+            "column": 14
+          },
+          "end": {
+            "line": 2,
+            "column": 16
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Layout/ExtraSpacing"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:2:14: C: Layout/ExtraSpacing: Unnecessary spacing detected.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 2,
+              "column": 14
+            },
+            "end": {
+              "line": 2,
+              "column": 16
+            }
+          },
+          "text": ""
+        }
+      ]
+    },
+    {
+      "message": "Do not use semicolons to terminate expressions.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 21
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Style/Semicolon"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:2:20: C: Style/Semicolon: Do not use semicolons to terminate expressions.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 2,
+              "column": 20
+            },
+            "end": {
+              "line": 2,
+              "column": 21
+            }
+          },
+          "text": ""
+        }
+      ]
+    },
+    {
+      "message": "Redundant `return` detected.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 9
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Style/RedundantReturn"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:3:3: C: Style/RedundantReturn: Redundant `return` detected.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 3
+            },
+            "end": {
+              "line": 3,
+              "column": 11
+            }
+          },
+          "text": ""
+        }
+      ]
+    },
+    {
+      "message": "Unnecessary spacing detected.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 3,
+            "column": 9
+          },
+          "end": {
+            "line": 3,
+            "column": 10
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Layout/ExtraSpacing"
+      },
+      "original_output": "test/rdjson_formatter/testdata/correctable_offenses.rb:3:9: C: Layout/ExtraSpacing: Unnecessary spacing detected.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "line": 3,
+              "column": 10
+            }
+          },
+          "text": ""
+        }
+      ]
+    },
+    {
+      "message": "Empty file detected.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/global_offenses.rb"
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "Lint/EmptyFile"
+      },
+      "original_output": "test/rdjson_formatter/testdata/global_offenses.rb:1:1: W: Lint/EmptyFile: Empty file detected."
+    },
+    {
+      "message": "Method parameter must be at least 3 characters long.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/not_correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 4,
+            "column": 15
+          },
+          "end": {
+            "line": 4,
+            "column": 16
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Naming/MethodParameterName"
+      },
+      "original_output": "test/rdjson_formatter/testdata/not_correctable_offenses.rb:4:15: C: Naming/MethodParameterName: Method parameter must be at least 3 characters long."
+    },
+    {
+      "message": "Method parameter must be at least 3 characters long.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/not_correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 4,
+            "column": 18
+          },
+          "end": {
+            "line": 4,
+            "column": 19
+          }
+        }
+      },
+      "severity": "INFO",
+      "code": {
+        "value": "Naming/MethodParameterName"
+      },
+      "original_output": "test/rdjson_formatter/testdata/not_correctable_offenses.rb:4:18: C: Naming/MethodParameterName: Method parameter must be at least 3 characters long."
+    },
+    {
+      "message": "Useless assignment to variable - `c`.",
+      "location": {
+        "path": "test/rdjson_formatter/testdata/not_correctable_offenses.rb",
+        "range": {
+          "start": {
+            "line": 5,
+            "column": 5
+          },
+          "end": {
+            "line": 5,
+            "column": 6
+          }
+        }
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "Lint/UselessAssignment"
+      },
+      "original_output": "test/rdjson_formatter/testdata/not_correctable_offenses.rb:5:5: W: Lint/UselessAssignment: Useless assignment to variable - `c`.",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 5,
+              "column": 5
+            },
+            "end": {
+              "line": 5,
+              "column": 14
+            }
+          },
+          "text": "a + b"
+        }
+      ]
+    }
+  ],
+  "severity": "ERROR"
+}
