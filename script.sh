@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # validate subscription status
-UPSTREAM="openfga/action-openfga-test"
+UPSTREAM="reviewdog/action-rubocop"
 ACTION_REPO="${GITHUB_ACTION_REPOSITORY:-}"
 DOCS_URL="https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions"
 
@@ -80,7 +80,8 @@ if [ "${INPUT_SKIP_INSTALL}" = "false" ]; then
   gem install -N rubocop --version "${RUBOCOP_VERSION}"
 
   # Traverse over list of rubocop extensions
-  for extension in $INPUT_RUBOCOP_EXTENSIONS; do
+  IFS=' ' read -ra RUBOCOP_EXTENSIONS <<< "${INPUT_RUBOCOP_EXTENSIONS}"
+  for extension in "${RUBOCOP_EXTENSIONS[@]}"; do
     # grep for name and version
     INPUT_RUBOCOP_EXTENSION_NAME=$(echo "$extension" |awk 'BEGIN { FS = ":" } ; { print $1 }')
     INPUT_RUBOCOP_EXTENSION_VERSION=$(echo "$extension" |awk 'BEGIN { FS = ":" } ; { print $2 }')
@@ -90,7 +91,7 @@ if [ "${INPUT_SKIP_INSTALL}" = "false" ]; then
       # if Gemfile.lock is here
       if [ -f 'Gemfile.lock' ]; then
         # grep for rubocop extension version
-        RUBOCOP_EXTENSION_GEMFILE_VERSION=$(ruby -ne "print $& if /^\s{4}$INPUT_RUBOCOP_EXTENSION_NAME\s\(\K.*(?=\))/" Gemfile.lock)
+        RUBOCOP_EXTENSION_GEMFILE_VERSION=$(EXT_NAME="$INPUT_RUBOCOP_EXTENSION_NAME" ruby -ne 'print $& if /^\s{4}#{Regexp.escape(ENV["EXT_NAME"])}\s\(\K.*(?=\))/' Gemfile.lock)
 
         # if rubocop extension version found, then pass it to the gem install
         # left it empty otherwise, so no version will be passed
@@ -109,13 +110,10 @@ if [ "${INPUT_SKIP_INSTALL}" = "false" ]; then
 
     # Handle extensions with no version qualifier
     if [ -z "${RUBOCOP_EXTENSION_VERSION}" ]; then
-      unset RUBOCOP_EXTENSION_VERSION_FLAG
+      gem install -N "${INPUT_RUBOCOP_EXTENSION_NAME}"
     else
-      RUBOCOP_EXTENSION_VERSION_FLAG="--version ${RUBOCOP_EXTENSION_VERSION}"
+      gem install -N "${INPUT_RUBOCOP_EXTENSION_NAME}" --version "${RUBOCOP_EXTENSION_VERSION}"
     fi
-
-    # shellcheck disable=SC2086
-    gem install -N "${INPUT_RUBOCOP_EXTENSION_NAME}" ${RUBOCOP_EXTENSION_VERSION_FLAG}
   done
   echo '::endgroup::'
 fi
@@ -127,6 +125,10 @@ if [ "${INPUT_USE_BUNDLER}" = "false" ]; then
 else
   BUNDLE_EXEC="bundle exec "
 fi
+
+# Parse flags into arrays for safe expansion (prevents glob expansion)
+IFS=' ' read -ra RUBOCOP_FLAGS <<< "${INPUT_RUBOCOP_FLAGS}"
+IFS=' ' read -ra REVIEWDOG_FLAGS <<< "${INPUT_REVIEWDOG_FLAGS}"
 
 if [ "${INPUT_ONLY_CHANGED}" = "true" ]; then
   echo '::group:: Getting changed files list'
@@ -163,10 +165,10 @@ fi
 echo '::group:: Running rubocop with reviewdog 🐶 ...'
 # shellcheck disable=SC2086
 ${BUNDLE_EXEC}rubocop \
-  --require ${GITHUB_ACTION_PATH}/rdjson_formatter/rdjson_formatter.rb \
+  --require "${GITHUB_ACTION_PATH}/rdjson_formatter/rdjson_formatter.rb" \
   --format RdjsonFormatter \
   --fail-level error \
-  ${INPUT_RUBOCOP_FLAGS} \
+  "${RUBOCOP_FLAGS[@]}" \
   "${CHANGED_FILES[@]}" \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
@@ -175,7 +177,7 @@ ${BUNDLE_EXEC}rubocop \
       -fail-level="${INPUT_FAIL_LEVEL}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
-      ${INPUT_REVIEWDOG_FLAGS}
+      "${REVIEWDOG_FLAGS[@]}"
 
 reviewdog_rc=$?
 echo '::endgroup::'
